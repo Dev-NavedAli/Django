@@ -17,8 +17,7 @@ def home(request):
     return render(request,"index.html",data)
 
 def aboutus(request):
-    return HttpResponse(" Welcome to Naved And Django to About us page ")
-
+    return render(request,"aboutus.html")
 def course(request):
     return HttpResponse("<b> Hi am course and this is cource page </b>")
 
