@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{tittle}}</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    {% include "header.html"%}
+    
+    <h1>Welcome to naved and django {{bdata}}</h1>
+    <img src="/static/images/one.webp" alt="" height="200">
+    {% for cd in cdata %}
+    <h1>{{forloop.counter}}.{{cd}}</h1>
+    {% endfor %}
+    <table border="1" cellpadding="10">
+        <tr>
+            <th>Name</th>
+            <th>Phone</th>
+        </tr>
+
+        {% for d in student_details %}
+        <tr>
+            <td>{{d.name}}</td>
+            <td>{{d.phone}}</td>
+        </tr>
+        {%endfor%}
+
+        {% for n in numbers%}
+        <div>
+            {% if n > 20 %}
+            {{n}}
+            {% else %}
+            the number is less than 20
+            {%endif%}
+        </div>
+        
+
+        {%endfor%}
+
+    </table>
+</body>
+</html>
