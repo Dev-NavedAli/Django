@@ -1,7 +1,5 @@
-from django.http import HttpResponse
+from django.http import HttpResponse , HttpResponseRedirect
 from django.shortcuts import render
-
-
 
 def home(request):
     data = {
@@ -30,10 +28,13 @@ def userform(request):
     try:
         # n=request.GET['name']
         # n2=request.GET['class']
-        n=request.GET.get('name')
-        n2=request.GET.get('class')
+        n=request.POST.get('name')
+        n2=request.POST.get('class')
         print(n,n2)
         data = n,n2
+        url = '/aboutus/?output={}'.format(data)
+        # return HttpResponseRedirect("/aboutus/")
     except:
         pass
     return render(request,"userform.html",{'output':data})
+    
