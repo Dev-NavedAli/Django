@@ -53,7 +53,6 @@ button {
 }
 .footer_inner {
   background: var(--light);
-  backdrop-filter: blur(50px);
   border: 0.1px solid rgba(233, 232, 232, 0.208);
   border-radius: 5px;
   padding: 2rem;

@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container2">
+    <form action="" method="get">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name">
+        <label for="class">Class</label>
+        <input type="text" id="class" name="class">
+        <label for="age">Age</label>
+        <input type="text" id="age" name="age">
+        <label for="bloodG">Blood Group</label>
+        <input type="text" id="bloodG" list="list" name="bloodgroup">
+        <button class="btn"type="Submit">Submit</button>
+    </form>
+
+    <datalist id="list">
+        <option >A+</option>
+        <option >B+</option>
+        <option >A-</option>
+        <option >AB-</option>
+        <option >AB+</option>
+        <option >O-</option>
+        <option >O+</option>
+    </datalist>
+    <h1>Data = {{output}}</h1>
+</div>
+<style>
+    .container{
+        border: 2px solid black;
+    }
+    .btn{
+        border: 1px solid black;
+        background-color: rgb(88, 88, 250);
+        border-radius: 14px;
+        padding: 7px;
+        cursor: pointer;
+        color: white;
+    }
+    .btn:hover{
+        background-color: aquamarine;
+        transition: all 0.4s;
+    }
+</style>
+
+
+{% endblock %}

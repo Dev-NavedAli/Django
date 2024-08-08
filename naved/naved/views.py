@@ -18,8 +18,22 @@ def home(request):
 
 def aboutus(request):
     return render(request,"aboutus.html")
+def service(request):
+    return render(request,"service.html")
 def course(request):
     return HttpResponse("<b> Hi am course and this is cource page </b>")
 
 def courseDetail(request,courseid):
     return HttpResponse(courseid)
+
+def userform(request):
+    try:
+        # n=request.GET['name']
+        # n2=request.GET['class']
+        n=request.GET.get('name')
+        n2=request.GET.get('class')
+        print(n,n2)
+        data = n,n2
+    except:
+        pass
+    return render(request,"userform.html",{'output':data})
