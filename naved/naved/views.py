@@ -64,3 +64,30 @@ def calculator(request):
         c="Invalid choice"
     print(c)
     return render(request,"calculator.html",{'c':c})
+
+def marksheet(request):
+    total = ""
+    try:
+        if request.method == "POST":
+            Subject1 = eval(request.POST.get("Subject1"))
+            Subject2 = eval(request.POST.get("Subject2"))
+            Subject3 = eval(request.POST.get("Subject3"))
+            Subject4 = eval(request.POST.get("Subject4"))
+            Subject5 = eval(request.POST.get("Subject2"))
+            total=Subject1+Subject2+Subject3+Subject4+Subject5
+            percentage= total/500*100
+            percentage = round(percentage)
+            if percentage >80:
+                grade  = "Grade A+"
+            elif percentage > 60 and percentage<80:
+                grade = "Grade b"
+            elif percentage > 40 and percentage < 60:
+                grade = "Grade c"
+            else:
+                grade  = "Fail" 
+    except:
+        total ="Invalid choice"
+        
+    print(total)
+    
+    return render(request,"marksheet.html",{'total':total,'percentage':percentage,'grade':grade})
