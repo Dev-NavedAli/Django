@@ -35,6 +35,12 @@
         {%endfor%}
 
     </table>
+    {% for i in  serviceData %} 
+    <!-- <h1>{{i.service_icon}}</h1> -->
+    <h1>{{i.service_des| safe}}</h1> 
+    <h1>{{i.service_title| capfirst}}</h1>
+        
+    {% endfor %}
 </body>
 </html>
 {% endblock %}

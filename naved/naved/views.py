@@ -1,17 +1,13 @@
 from django.http import HttpResponse
 from django.shortcuts import render,redirect
 from .forms import usersForms
+from service.models import Service
 
 def home(request):
+    serviceData = Service.objects.all().order_by('-service_title')
+    
     data = {
-        'tittle':'Home Page',
-        'bdata':'Welcome to real world',
-        'cdata':["Python","mern","java"],
-        'numbers':[10,20,30,40,50,60,70],
-        'student_details':[
-            {'name':'jijo','phone':8054682324},
-            {'name':'kiko','phone':8054546832}
-        ]
+        'serviceData':serviceData
     }
     return render(request,"index.html",data)
 
@@ -67,8 +63,12 @@ def calculator(request):
 
 def marksheet(request):
     total = ""
+    percentage=""
+    grade=""
     try:
         if request.method == "POST":
+            # if request.POST.get("Subject1") == "":    for bootstrap error agar field khai hone pr 5:18:01 pr wscube ki vdo
+            #     return render(request,"marksheet.html",{'error':True})
             Subject1 = eval(request.POST.get("Subject1"))
             Subject2 = eval(request.POST.get("Subject2"))
             Subject3 = eval(request.POST.get("Subject3"))
@@ -76,7 +76,7 @@ def marksheet(request):
             Subject5 = eval(request.POST.get("Subject2"))
             total=Subject1+Subject2+Subject3+Subject4+Subject5
             percentage= total/500*100
-            percentage = round(percentage)
+            percentage = round(percentage,2)
             if percentage >80:
                 grade  = "Grade A+"
             elif percentage > 60 and percentage<80:
