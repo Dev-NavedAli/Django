@@ -2,12 +2,21 @@ from django.http import HttpResponse
 from django.shortcuts import render,redirect
 from .forms import usersForms
 from service.models import Service
+from news.models import News
+
+
 
 def home(request):
-    serviceData = Service.objects.all().order_by('-service_title')
-    
+    newsData = News.objects.all()
+    #iconatains ka kaam hota hai ki ek letter se bhi data search ho jaaye 
+    serviceData = Service.objects.all()
+    if request.method == 'GET':
+        st = request.GET.get('inputsearch')
+        if st!=None:
+            serviceData = Service.objects.filter(service_title__icontains=st)
     data = {
-        'serviceData':serviceData
+        'serviceData':serviceData,
+        'newsData':newsData
     }
     return render(request,"index.html",data)
 
@@ -15,10 +24,19 @@ def submitform(request):
     return HttpResponse(request)
 
 
+def detailPage(request,newsid):
+    newsdetail = News.objects.get(id = newsid)
+    data ={
+        'newsdetail':newsdetail
+    }
+    return render(request,"detailPage.html",data)
+
 def aboutus(request):
     return render(request,"aboutus.html")
+
 def service(request):
     return render(request,"service.html")
+
 def course(request):
     return HttpResponse("<b> Hi am course and this is cource page </b>")
 

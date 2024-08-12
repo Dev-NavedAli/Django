@@ -1,10 +1,31 @@
 {% extends 'base.html'%}
 {% block content %}
 <body>
-  
-
-
+    
+    <marquee behavior="scroll" direction="left" onmouseover="stop()" onmouseout="start()">
+    {% for news in  newsData %}
+    <a href="/detailPage/{{news.id}}">{{ news.news_tittle}} &nbsp; &nbsp; &nbsp; &nbsp; </a>
+    {% endfor %}     
+    </marquee>
+    
     <h1>Welcome to naved and django {{bdata}}</h1>
+
+    <!-- for searching -->
+    <div class="row">
+        <div class="col-12">
+          <form action="" method="get">
+            <label for="search">
+            <input type="text" id="search" placeholder="enter the value" name="inputsearch">
+            </label>
+            <button type="submit">
+              submit
+            </button>
+          </form>
+        </div>
+      </div>
+      <!-- for searching -->
+
+
     <img src="/static/images/one.webp" alt="" height="200">
     {% for cd in cdata %}
     <h1>{{forloop.counter}}.{{cd}}</h1>
@@ -36,10 +57,14 @@
 
     </table>
     {% for i in  serviceData %} 
-    <!-- <h1>{{i.service_icon}}</h1> -->
-    <h1>{{i.service_des| safe}}</h1> 
-    <h1>{{i.service_title| capfirst}}</h1>
-        
+    <div class="srch">
+        <h1>{{i.service_icon}}</h1>
+        <h1>{{i.service_des| safe}}</h1> 
+        <h1>{{i.service_title| capfirst}}</h1>
+    </div>
+    
+    {% empty %}
+    No Data found
     {% endfor %}
 </body>
 </html>
