@@ -3,6 +3,7 @@ from django.shortcuts import render,redirect
 from .forms import usersForms
 from service.models import Service
 from news.models import News
+from django.core.paginator import Paginator
 
 
 
@@ -10,12 +11,19 @@ def home(request):
     newsData = News.objects.all()
     #iconatains ka kaam hota hai ki ek letter se bhi data search ho jaaye 
     serviceData = Service.objects.all()
+    paginator= Paginator(serviceData,2)
+    page_number = request.GET.get('page')
+    serviceDataFinal = paginator.get_page(page_number)
+    totalpage = serviceDataFinal.paginator.num_pages
+
     if request.method == 'GET':
         st = request.GET.get('inputsearch')
         if st!=None:
             serviceData = Service.objects.filter(service_title__icontains=st)
     data = {
-        'serviceData':serviceData,
+        'serviceData':serviceDataFinal,
+        'lastpage':totalpage,
+        'pageList':[i+1 for i in range(totalpage) ],
         'newsData':newsData
     }
     return render(request,"index.html",data)
@@ -24,8 +32,8 @@ def submitform(request):
     return HttpResponse(request)
 
 
-def detailPage(request,newsid):
-    newsdetail = News.objects.get(id = newsid)
+def detailPage(request,slug):
+    newsdetail = News.objects.get(news_slug = slug)
     data ={
         'newsdetail':newsdetail
     }

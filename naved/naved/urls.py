@@ -13,5 +13,5 @@ urlpatterns = [
     path('submitform/',views.submitform,name="submitform"),
     path('calculator/',views.calculator),
     path('marksheet/',views.marksheet),
-    path('detailPage/<newsid>',views.detailPage)
+    path('detailPage/<slug>',views.detailPage)
 ]

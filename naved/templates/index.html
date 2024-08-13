@@ -4,7 +4,7 @@
     
     <marquee behavior="scroll" direction="left" onmouseover="stop()" onmouseout="start()">
     {% for news in  newsData %}
-    <a href="/detailPage/{{news.id}}">{{ news.news_tittle}} &nbsp; &nbsp; &nbsp; &nbsp; </a>
+    <a href="/detailPage/{{news.news_slug}}">{{news.news_tittle}} &nbsp; &nbsp; &nbsp; &nbsp; </a>
     {% endfor %}     
     </marquee>
     
@@ -57,9 +57,9 @@
 
     </table>
     {% for i in  serviceData %} 
-    <div class="srch">
+    <div class="srch" style="border: 2px solid black; width: 500px; margin: 50px ;">
         <h1>{{i.service_icon}}</h1>
-        <h1>{{i.service_des| safe}}</h1> 
+        <h1 >{{i.service_des| safe}}</h1> 
         <h1>{{i.service_title| capfirst}}</h1>
     </div>
     
@@ -67,5 +67,37 @@
     No Data found
     {% endfor %}
 </body>
-</html>
+  <div class="paginator">
+
+    {% if serviceData.has_previous %}
+      <a href="/?page={{serviceData.previous_page_number}}">Previous</a>&nbsp;
+    {% endif %}
+
+    {% for i in pageList %}
+    <a href="/?page={{i}}">{{i}}</a>&nbsp;
+    {% endfor %}
+      
+      <!-- <a href="/?page=2">2</a>&nbsp; -->
+
+    {% if serviceData.has_next %}
+      <a href="/?page={{serviceData.next_page_number}}">Next</a&nbsp;>
+      
+    {% endif %}
+
+      <a href="/?page={{lastpage}}">Last</a>
+      
+    
+    </div>
+    
+    
+
+
+
+    <style>
+      .paginator{
+        border: 1px solid black;
+        width: 150px;
+        margin-left: 20px;
+      }
+    </style>
 {% endblock %}
