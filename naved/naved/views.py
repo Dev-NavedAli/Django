@@ -4,6 +4,7 @@ from .forms import usersForms
 from service.models import Service
 from news.models import News
 from django.core.paginator import Paginator
+from contactenquiry.models import contactEnquiry
 
 
 
@@ -66,6 +67,21 @@ def userform(request):
         pass
     return render(request,"userform.html",{'output':data,'form':fn})
 
+def contact(request):
+    return render(request,"contact.html")
+
+def saveenquiry(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        phone = request.POST.get('phone')
+        website = request.POST.get('website')
+        manage = request.POST.get('manage')
+        en = contactEnquiry(name=name,email=email,phone=phone,website_name=website,manage=manage)
+        en.save()
+
+
+    return render(request,"contact.html")
 
 def calculator(request):
     c=''

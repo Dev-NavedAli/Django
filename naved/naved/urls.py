@@ -13,5 +13,7 @@ urlpatterns = [
     path('submitform/',views.submitform,name="submitform"),
     path('calculator/',views.calculator),
     path('marksheet/',views.marksheet),
-    path('detailPage/<slug>',views.detailPage)
+    path('detailPage/<slug>',views.detailPage),
+    path('contact/',views.contact),
+    path('saveenquiry',views.saveenquiry, name='saveenquiry')
 ]

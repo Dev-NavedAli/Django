@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<body>
+    <h1>Conatact Form</h1>
+    <form action="{% url 'saveenquiry' %}" method="post">
+        {% csrf_token %}
+        <label for="name">Name:
+            <input type="text" id="name" name="name">
+        </label>
+        <label for="email">Email
+            <input type="text" id="email" name="email">
+        </label>
+        <label for="phone">Phone
+            <input type="text"id="phone" name="phone" >
+        </label>
+        <label for="website">Website Name:
+            <input type="text" id="website" name="website" >
+        </label>
+        <label for="manage">Manage :
+            <textarea name="manage" id="manage" ></textarea>
+        </label>
+        <button style="background-color: rgb(35, 173, 0); color: white; padding: 5px; border-radius: 14px; margin-left: 10px;">Submit</button>
+        
+    </form>
+</body>
+
+{% endblock content %}
