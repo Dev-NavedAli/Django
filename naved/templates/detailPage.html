@@ -4,6 +4,12 @@
 <body>
     <h1>{{newsdetail.news_tittle | safe}}</h1>
     <p>{{newsdetail.news_desc| safe}}</p>
+    {% if newsdetail.news_image != 'NULL' %}
+    <div class="img">
+        <img src="/media/{{newsdetail.news_image}}" alt="">
+    </div>
+    {% endif %}
+    
 </body>
 
 {% endblock content%}
